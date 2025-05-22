@@ -8,34 +8,43 @@ const StyledTextField = styled(TextField)({
   borderRadius: '4px',
 });
 
-const InputField = ({ name, value, onChangehandler, error, disabled, placeholder }) => {
-  return (
-    <StyledTextField
-      name={name}
-      value={value}
-      onChange={(e) => onChangehandler(e.target.name, e.target.value)}
-      error={error}
-      disabled={disabled}
-      placeholder={placeholder}
-      variant="outlined"
-      size="small"
-      fullWidth
-      autoComplete="off"
-      inputProps={{
-        autoComplete: 'off',
-      }}
-    />
-  );
-};
+const InputField = ({
+  name,
+  value,
+  userId,
+  onChangehandler,
+  onBlurHandler,
+  onFocusHandler,
+  error,
+  disabled,
+  placeholder
+}) => (
+  <StyledTextField
+    name={name}
+    value={value}
+    onChange={(e) => onChangehandler(e.target.name, e.target.value, userId)}
+    onBlur={(e) => onBlurHandler?.(e.target.name, e.target.value)}
+    onFocus={(e) => onFocusHandler?.(e.target.name)}
+    error={error}
+    disabled={disabled}
+    placeholder={placeholder}
+    variant="outlined"
+    size="small"
+    fullWidth
+    autoComplete="off"
+    inputProps={{ autoComplete: 'off' }}
+  />
+);
 
-// TODO: Implement passed props
 InputField.defaultProps = {
   name: 'text_field_name',
   value: '',
   onChangehandler: () => {},
+  onBlurHandler: () => {},
+  onFocusHandler: () => {},
   error: false,
   disabled: false,
-  placeholder: '',
+  placeholder: ''
 };
 
 export default InputField;
