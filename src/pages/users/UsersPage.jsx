@@ -1,14 +1,45 @@
+import { useEffect } from 'react';
 import { CircularProgress, Box, Typography } from '@mui/material';
+import { useUsersStore, useUsersDerived } from '../../store/useUsersStore';
 import PrimaryButton from '../../components/PrimaryButton';
-import { useUsersContext } from '../../context/usersContext';
 import UsersList from './usersList/UsersList';
 import styles from './users.module.css';
 
+const SAVE = "Save";
+const LOADING_USERS = "Loading users...";
+const ERRORS = "Errors";
+const EMPTY_FIELDS = "Empty Fields";
+const INVALID_FIELDS = "Invalid Fields";
+const INCOMPLETE_ROW = "There are incomplete users – please fill in all fields.";
+
 function UsersPage() {
-  const { saveUsers, loading, isSaveDisabled } = useUsersContext();
-  
-  const SAVE = "Save";
-  const LOADING_USERS = "Loading users...";
+
+  const { isSaveDisabled, hasEmptyRows } = useUsersDerived();
+  const { users, errors, saveUsers, loading, initializeUsers } = useUsersStore();
+
+  useEffect(() => {
+    initializeUsers();
+  }, [initializeUsers]);
+
+  const countErrorTypes = () => {
+    let emptyCount = 0;
+    let invalidCount = 0;
+
+    users.forEach((user) => {
+      const userErrors = errors[user.id] || {};
+
+      Object.entries(userErrors).forEach(([field, isError]) => {
+        if (isError) {
+          const value = user[field];
+          value === '' ? emptyCount++ : invalidCount++;
+        }
+      });
+    });
+
+    return { emptyCount, invalidCount };
+  };
+
+  const { emptyCount, invalidCount } = countErrorTypes();
 
   if (loading) {
     return (
@@ -33,6 +64,18 @@ function UsersPage() {
       <div className={styles.pageContentContainer}>
         <UsersList />
         <div className={styles.rightButtonContainer}>
+ 
+        {/* {hasEmptyRows && (
+          <Typography color="warning" variant="body2">
+            {INCOMPLETE_ROW}
+          </Typography>
+        )} */}
+
+        {(emptyCount > 0 || invalidCount > 0) && (
+          <Typography color="error" variant="body2" sx={{ mt: 2 }}>
+            {ERRORS}: {EMPTY_FIELDS} - {emptyCount}, {INVALID_FIELDS} - {invalidCount}
+          </Typography>
+        )}
           <PrimaryButton
             onClick={saveUsers}
             disabled={isSaveDisabled}>

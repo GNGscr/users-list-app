@@ -4,7 +4,6 @@ import AutocompleteField from '../../../components/AutocompleteField';
 import TrashIconButton from '../../../components/TrashIconButton';
 import styles from '../users.module.css';
 
-
 const UserRow = ({
   user,
   errors,

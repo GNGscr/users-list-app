@@ -1,10 +1,10 @@
 import React from 'react';
-import { useUsersContext } from '../../context/usersContext';
+import { useUsersStore } from '../../store/useUsersStore';
 import PieChart from '../../components/PieChart';
 import styles from './statistics.module.css';
 
 function StatisticsPage() {
-  const { users } = useUsersContext();
+  const { users } = useUsersStore();
 
   const STATISTICS_PAGE = "Statistics Page";
 

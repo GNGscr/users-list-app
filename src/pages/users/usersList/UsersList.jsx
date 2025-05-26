@@ -6,7 +6,7 @@ import {
   validatePhone,
   validateCountry
 } from '../../../helpers/validation';
-import { useUsersContext } from '../../../context/usersContext';
+import { useUsersStore } from '../../../store/useUsersStore';
 import AddButton from '../../../components/AddButton';
 import UserRow from '../userRow/UserRow';
 import styles from '../users.module.css';
@@ -32,14 +32,10 @@ const textFieldStyles = {
   }
 };
 
-const ERRORS = "Errors";
 const USERS_LIST = "Users List";
-const EMPTY_FIELDS = "Empty Fields";
-const INVALID_FIELDS = "Invalid Fields";
-const INCOMPLETE_ROW = "There are incomplete users – please fill in all fields.";
 
 function UsersList() {
-  const { users, setUsers, errors, setErrors, hasEmptyRows } = useUsersContext();
+  const { users, setUsers, errors, setErrors } = useUsersStore();
 
   const [editingCountries, setEditingCountries] = useState({});
   const [searchTerm, setSearchTerm] = useState('');
@@ -138,26 +134,6 @@ function UsersList() {
     }));
   };
 
-  const countErrorTypes = () => {
-    let emptyCount = 0;
-    let invalidCount = 0;
-
-    users.forEach((user) => {
-      const userErrors = errors[user.id] || {};
-
-      Object.entries(userErrors).forEach(([field, isError]) => {
-        if (isError) {
-          const value = user[field];
-          value === '' ? emptyCount++ : invalidCount++;
-        }
-      });
-    });
-
-    return { emptyCount, invalidCount };
-  };
-
-  const { emptyCount, invalidCount } = countErrorTypes();
-
   return (
     <div className={styles.usersList}>
       <div className={styles.usersListHeader}>
@@ -184,18 +160,6 @@ function UsersList() {
       </div>
 
       <div className={styles.usersListContent}>
-
-        {hasEmptyRows && (
-          <Typography color="warning" variant="body2">
-            {INCOMPLETE_ROW}
-          </Typography>
-        )}
-
-        {(emptyCount > 0 || invalidCount > 0) && (
-          <Typography color="error" variant="body2" sx={{ mt: 2 }}>
-            {ERRORS}: {EMPTY_FIELDS} - {emptyCount}, {INVALID_FIELDS} - {invalidCount}
-          </Typography>
-        )}
 
         {filteredUsers ? filteredUsers.map((user) => (
           <UserRow
