@@ -16,6 +16,10 @@
 
 .rightButtonContainer {
   margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  gap: 10px;
 }
 
 .usersList {

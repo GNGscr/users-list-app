@@ -1,8 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import data from "../data/initialUsersData.json";
-
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+import { setUsers, setErrors, saveUsers, initializeUsers } from "../helpers/actions";
 
 export const useUsersStore = create(
    persist( (set, get) => ({
@@ -11,33 +10,10 @@ export const useUsersStore = create(
         loading: true,
 
         // Actions
-        setUsers: (newUsers) => {
-            set((state) => ({
-              users: typeof newUsers === 'function'
-                ? newUsers(state.users) : newUsers,
-            }))
-        },
-        setErrors: (newErrors) => {
-            set((state) =>
-              typeof newErrors === 'function'
-                ? { errors: newErrors(state.errors) }
-                : { errors: newErrors }
-            )
-        },
-        saveUsers: () => {
-            const { users } = get();
-            console.log('Users were saved successfully!', users);
-            set({ errors: {} });
-            localStorage.setItem('users', JSON.stringify(users));
-        },
-        initializeUsers: async () => {
-            const localData = localStorage.getItem('users');
-            await delay(1000); // simulate loading
-            set({
-                users: localData ? JSON.parse(localData) : data,
-                loading: false,
-            });
-        },
+        setUsers: (newUsers) => setUsers(newUsers, set),
+        setErrors: (newErrors) => setErrors(newErrors, set),
+        saveUsers: () => saveUsers(set, get),
+        initializeUsers: async () => initializeUsers(data, set),
     }),
     {
         name: 'users-store', // name in localStorage

@@ -5,7 +5,7 @@ import {
   validateEmail,
   validatePhone,
   validateCountry
-} from '../../../helpers/validation';
+} from '../../../helpers/validations';
 import { useUsersStore } from '../../../store/useUsersStore';
 import AddButton from '../../../components/AddButton';
 import UserRow from '../userRow/UserRow';
@@ -17,11 +17,14 @@ const textFieldStyles = {
     color: 'lightgray'
   },
   '& .MuiOutlinedInput-root': {
+    maxHeight: '2rem',
+    margin: '0.25rem 0',
+    // color: '#fff',
     '& fieldset': {
-      borderColor: '#555'
+      borderColor: '#666'
     },
     '&:hover fieldset': {
-      borderColor: '#777'
+      borderColor: '#888'
     },
     '&.Mui-focused fieldset': {
       color: '#999'
@@ -46,19 +49,7 @@ function UsersList() {
     )
   );
 
-  const handleUserChange = (field, value, id) => {
-    setUsers((prev) =>
-      prev.map((user) =>
-        user.id === id ? { ...user, [field]: value } : user
-      )
-    );
-
-    // set to edit mode if user edit the field
-    if (field === 'country') {
-      setEditingCountries((prev) => ({ ...prev, [id]: true }));
-    }
-
-    // Validation
+  const validateInput = (field, value, id) => {
     let isValid = true;
 
     if (value === '') {
@@ -89,6 +80,21 @@ function UsersList() {
         [field]: !isValid, // => error = true
       }
     }));
+  };
+
+  const handleUserChange = (field, value, id) => {
+    setUsers((prev) =>
+      prev.map((user) =>
+        user.id === id ? { ...user, [field]: value } : user
+      )
+    );
+
+    if (field === 'country') {
+      setEditingCountries((prev) => ({ ...prev, [id]: true }));
+    }
+
+    // // Validation
+    validateInput(field, value, id);
   };
 
   const handleBlur = (id, field, value) => {

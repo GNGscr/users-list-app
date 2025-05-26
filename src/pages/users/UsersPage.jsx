@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { CircularProgress, Box, Typography } from '@mui/material';
 import { useUsersStore, useUsersDerived } from '../../store/useUsersStore';
 import PrimaryButton from '../../components/PrimaryButton';
@@ -10,16 +9,11 @@ const LOADING_USERS = "Loading users...";
 const ERRORS = "Errors";
 const EMPTY_FIELDS = "Empty Fields";
 const INVALID_FIELDS = "Invalid Fields";
-const INCOMPLETE_ROW = "There are incomplete users – please fill in all fields.";
 
 function UsersPage() {
 
-  const { isSaveDisabled, hasEmptyRows } = useUsersDerived();
-  const { users, errors, saveUsers, loading, initializeUsers } = useUsersStore();
-
-  useEffect(() => {
-    initializeUsers();
-  }, [initializeUsers]);
+  const { isSaveDisabled } = useUsersDerived();
+  const { users, errors, saveUsers, loading } = useUsersStore();
 
   const countErrorTypes = () => {
     let emptyCount = 0;
@@ -27,7 +21,6 @@ function UsersPage() {
 
     users.forEach((user) => {
       const userErrors = errors[user.id] || {};
-
       Object.entries(userErrors).forEach(([field, isError]) => {
         if (isError) {
           const value = user[field];
