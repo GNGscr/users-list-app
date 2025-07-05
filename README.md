@@ -20,7 +20,6 @@ Built with [Vite](https://vitejs.dev/), [React](https://react.dev/), [TypeScript
 - Disabled save button until errors are fixed.
 - Errors automatically cleaned when deleting rows.
 - Data persistence in localStorage to survive page reloads.
-- Smooth scroll experience for long lists.
 
 ### 🧪 Validation Rules
 
@@ -53,7 +52,7 @@ Example:
 - Pie chart showing the number of users per country.
 - Automatically reflects latest saved users.
 - Fallback: country list + user counts (if charting not available).
-- Built with your charting library of choice (e.g., Chart.js, Recharts, or custom solution).
+- Built with Chart.js.
 
 ---
 
@@ -71,13 +70,27 @@ Example:
 
 - Autocomplete/select input for country selection.
 - Loading spinner while user data loads.
-- Virtualization of long lists for performance (e.g., using `react-window` or `react-virtualized`).
 
 ---
 
 ## 📁 Project Structure
 
 
+src/
+├── components/
+│ ├── UserRow.tsx
+│ ├── UserList.tsx
+│ ├── ErrorSummary.tsx
+│ └── SearchBar.tsx
+├── context/
+│ └── UsersContext.tsx
+├── pages/
+│ ├── UsersPage.tsx
+│ └── StatisticsPage.tsx
+├── utils/
+│ └── validation.ts
+├── App.tsx
+└── main.tsx
 
 
 ---
