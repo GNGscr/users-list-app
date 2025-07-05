@@ -16,13 +16,13 @@ export const useUsersStore = create(
         initializeUsers: async () => initializeUsers(data, set),
     }),
     {
-        name: 'users-store', // name in localStorage
-        partialize: (state) => ({ users: state.users }) // persist only users if desired
+        name: 'users-store', // Name of the storage key
+        partialize: (state) => ({ users: state.users }) // Persist only the users array
     }
   )
 );
 
-// Derived state (selectors)
+// Custom hook to derive state for the Users page
 export const useUsersDerived = () => {
     const users = useUsersStore((state) => state.users);
     const errors = useUsersStore((state) => state.errors);
