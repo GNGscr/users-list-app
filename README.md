@@ -75,7 +75,7 @@ Example:
 
 ## 📁 Project Structure
 
-
+```bash
 src/
 ├── components/
 │ ├── UserRow.tsx
@@ -91,7 +91,7 @@ src/
 │ └── validation.ts
 ├── App.tsx
 └── main.tsx
-
+```
 
 ---
 
