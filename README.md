@@ -44,7 +44,7 @@ Displays total number of:
 
 Example:
 
-
+  Errors: Empty Fields - 0, Invalid Fields - 1
 
 ---
 
