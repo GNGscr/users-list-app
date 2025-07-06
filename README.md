@@ -6,6 +6,12 @@ Built with [Vite](https://vitejs.dev/), [React](https://react.dev/), [TypeScript
 
 ---
 
+## 📸 Preview
+
+![User List App Preview](./public/images/screenshot.png)
+
+---
+
 ## 🚀 Features
 
 ### 📝 Users Management
