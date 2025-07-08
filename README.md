@@ -112,4 +112,4 @@ npm run dev
 
 ## 👨‍💻 Author
 
-  Built by Danie Ehrlich as side project.# users-list-app
+  Built by Daniel Ehrlich as side project.# users-list-app
