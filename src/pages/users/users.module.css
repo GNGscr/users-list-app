@@ -67,3 +67,17 @@
   padding: 5px 10px;
   gap: .25rem;
 }
+
+/* Errors */
+
+.errors {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #aaa;
+  padding: 0.25rem 0;
+}
+
+.errorsTitle {
+  font-weight: bold;
+}

@@ -52,23 +52,29 @@ function UsersPage() {
     )
   }
 
+  const setDisplayError = (count, fieldName) => {
+    return count > 0 && (
+      <Typography
+        color={fieldName === 'Empty Fields'
+          ? 'yellow' : 'error' }
+        variant="body2">
+        {fieldName} - {count}
+      </Typography>
+    )
+  }
+
   return (
     <div className={styles.pageRoot}>
       <div className={styles.pageContentContainer}>
         <UsersList />
-        <div className={styles.rightButtonContainer}>
- 
-        {/* {hasEmptyRows && (
-          <Typography color="warning" variant="body2">
-            {INCOMPLETE_ROW}
-          </Typography>
-        )} */}
-
-        {(emptyCount > 0 || invalidCount > 0) && (
-          <Typography color="error" variant="body2" sx={{ mt: 2 }}>
-            {ERRORS}: {EMPTY_FIELDS} - {emptyCount}, {INVALID_FIELDS} - {invalidCount}
-          </Typography>
-        )}
+          <div className={styles.rightButtonContainer}>
+            {(emptyCount > 0 || invalidCount > 0) && (
+              <div className={styles.errors}>
+                <div className={styles.errorsTitle}>{ERRORS}: </div>
+                  {setDisplayError(emptyCount, EMPTY_FIELDS) || ''}
+                  {setDisplayError(invalidCount, INVALID_FIELDS) || ''}
+              </div>
+            )}
           <PrimaryButton
             onClick={saveUsers}
             disabled={isSaveDisabled}>
