@@ -69,7 +69,7 @@ Example:
 - React Context (global state)
 - LocalStorage (data persistence)
 - Charting library (e.g., Chart.js or Recharts)
-- Material UI - (e.g., Select and Spinner)
+- Material UI - (e.g., Select + Spinner + Input, etc)
 
 ---
 
