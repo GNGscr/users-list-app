@@ -72,7 +72,7 @@ Example:
 
 ---
 
-## 🧩 Optional Enhancements
+## 🧩 Enhancements (using MUI)
 
 - Autocomplete/select input for country selection.
 - Loading spinner while user data loads.
