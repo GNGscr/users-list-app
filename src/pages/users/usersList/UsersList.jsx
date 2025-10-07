@@ -16,10 +16,12 @@ const textFieldStyles = {
   '& input': {
     color: 'lightgray'
   },
+  '& .css-1pysi21-MuiFormLabel-root-MuiInputLabel-root': {
+    color: '#ccc',
+  },
   '& .MuiOutlinedInput-root': {
     maxHeight: '2rem',
     margin: '0.25rem 0',
-    // color: '#fff',
     '& fieldset': {
       borderColor: '#666'
     },
