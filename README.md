@@ -10,9 +10,9 @@ Built with [Vite](https://vitejs.dev/), [React](https://react.dev/), [TypeScript
 
 ![User List App Preview](./public/images/screenshot.png)
 
-## 📸 Live Site
+## 📸 Live Demo
 
-[User List App Live Site](https://users-list-app-de.netlify.app/)
+[User List App Live Demo](https://users-list-app-de.netlify.app/)
 
 ---
 
