@@ -10,6 +10,10 @@ Built with [Vite](https://vitejs.dev/), [React](https://react.dev/), [TypeScript
 
 ![User List App Preview](./public/images/screenshot.png)
 
+## 📸 Live Site
+
+[User List App Live Site](https://users-list-app-de.netlify.app/)
+
 ---
 
 ## 🚀 Features
@@ -67,7 +71,7 @@ Example:
 - React + TypeScript
 - Vite
 - React Context (global state)
-- LocalStorage (data persistence)
+- LocalStorage (data persistence) 
 - Charting library (e.g., Chart.js or Recharts)
 - Material UI - (e.g., Select + Spinner + Input, etc)
 
