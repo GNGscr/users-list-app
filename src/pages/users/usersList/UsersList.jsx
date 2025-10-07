@@ -16,7 +16,7 @@ const textFieldStyles = {
   '& input': {
     color: 'lightgray'
   },
-  '& .css-1pysi21-MuiFormLabel-root-MuiInputLabel-root': {
+  '& .css-cktaik, .css-1pysi21-MuiFormLabel-root-MuiInputLabel-root': {
     color: '#ccc !important',
   },
   '& .MuiOutlinedInput-root': {
