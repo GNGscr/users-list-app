@@ -17,7 +17,7 @@ const textFieldStyles = {
     color: 'lightgray'
   },
   '& .css-1pysi21-MuiFormLabel-root-MuiInputLabel-root': {
-    color: '#ccc',
+    color: '#ccc !important',
   },
   '& .MuiOutlinedInput-root': {
     maxHeight: '2rem',
